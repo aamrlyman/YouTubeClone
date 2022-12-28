@@ -3,7 +3,6 @@ import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
 import { Link } from "react-router-dom";
 import "./LoginPage.css";
-
 const LoginPage = () => {
   const { loginUser, isServerError } = useContext(AuthContext);
   const defaultValues = { username: "", password: "" };
@@ -24,7 +23,7 @@ const LoginPage = () => {
         <label>
           Username:{" "}
           <input
-            type="text"
+            type="text" 
             name="username"
             value={formData.username}
             onChange={handleInputChange}
