@@ -8,11 +8,12 @@ import { KEY } from "./localKey"
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import YouTubePage from "./pages/YouTubePage/YouTubePage"; 
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-
+import SearchBar from "./components/SearchBar/SearchBar";
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 
@@ -20,6 +21,7 @@ function App() {
   return (
     <div>
       <Navbar />
+      <SearchBar/>
       <Routes>
         <Route
           path="/"
@@ -29,6 +31,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route exact path="/" element={<YouTubePage/>} /> 
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
