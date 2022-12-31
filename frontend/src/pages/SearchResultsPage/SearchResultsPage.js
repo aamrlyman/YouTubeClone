@@ -6,23 +6,24 @@ import { DATA } from '../../localData';
 import { KEY } from '../../localKey';
 
 const SearchResultsPage = (props) => {
-    const [searchResults, setSearchResults] = useState([])
     const { query } = useParams();
+    const [searchResults, setSearchResults] = useState(DATA)
     let search = "cars"
+
+    useEffect(() => { 
+        // getSearchResults();
+    }, [])
     
-    useEffect(() => { getSearchResults();
-        }, [])
-        
     const getSearchResults = async () => {
         try {
             let response = await axios.get(
                 `https://www.googleapis.com/youtube/v3/search?q=${search}&key=${KEY}&type=video&maxResults=5&part=snippet`
                 );
-                setSearchResults(response.data)
                 console.log(searchResults.items)
+                setSearchResults(response.data)
                 
             } catch (error) {
-                console.log(error.message)  
+                console.log(error.message)
             }
         };
         
@@ -33,9 +34,10 @@ const SearchResultsPage = (props) => {
                 return(
                 <li key={video.id.videoId}>
                     <Link to= {`/video/${video.id.videoId}`}>
-                        <img src= {video.snippet.thumbnails.default.url}/>
+                        <img src= {video.snippet.thumbnails.default.url} alt='video thumbnails' />
                     
-                    </Link> 
+                    </Link>
+                     <p>{video.snippet.title}</p>
                 </li>)
             }
             ) }
