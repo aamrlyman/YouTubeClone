@@ -1,7 +1,7 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { KEY } from "./localKey";
+// import { KEY } from "./localKey";
 
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
@@ -32,8 +32,8 @@ function App() {
           }
         />
         <Route exact path="/" element={<YouTubePage />}>
-          <Route path="/search/:query" element={<SearchResultsPage />} KEY={KEY}/>
-          <Route path="/video/:videoId" element={<VideoPage />} />
+          <Route path="/" element={<SearchResultsPage />}/>
+          <Route path="watch/:videoId" element={<VideoPage />} />
         </Route>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
