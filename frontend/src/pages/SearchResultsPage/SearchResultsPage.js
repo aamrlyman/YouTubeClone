@@ -1,26 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { Link } from 'react-router-dom'
-import {useParams} from "react-router-dom"
 import { DATA } from '../../localData';
 import { KEY } from '../../localKey';
-import { useNavigate } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
-import VideoPage from '../VideoPage/VideoPage';
+import { useNavigate, Link, useParams, } from 'react-router-dom';
 
 const SearchResultsPage = (props) => {
     const { query } = useParams();
     const [searchResults, setSearchResults] = useState(DATA)
+    const navigate = useNavigate();
     let search = "cars"
 
     // function onClickHandler(searchResults){
     //     useNavigate(`/video/${video.id.videoId}`)
     // }
     
-    // useEffect(() => { 
-    //     getSearchResults();
-    // }, [])
+    useEffect(() => { 
+        // getSearchResults();
+    }, [])
     
+    const handleClick = (video) => {
+        navigate(`/watch/${video.id.videoId}`, {
+            state: {
+                title: video.snippet.title,
+                description: video.snippet.description
+            }
+        }
+        
+        )
+    }
+
     const getSearchResults = async () => {
         try {
             let response = await axios.get(
@@ -40,11 +48,7 @@ const SearchResultsPage = (props) => {
             {searchResults.items && searchResults.items.map((video) =>{
                 return(
                 <li key={video.id.videoId}>
-                    <Link to= {`/watch/${video.id.videoId}`}>
-                        <img src= {video.snippet.thumbnails.default.url} alt='video thumbnails' />
-                    
-                    </Link>
-                     {/* <Outlet></Outlet> */}
+                        <img src= {video.snippet.thumbnails.default.url} alt='video thumbnails' onClick= {() => handleClick(video)}/>
                      <p>{video.snippet.title}</p>
                 </li>)
             }
