@@ -15,7 +15,7 @@ const SearchResultsPage = (props) => {
     // }
     
     useEffect(() => { 
-        // getSearchResults();
+        getSearchResults();
     }, [])
     
     const handleClick = (video) => {
@@ -25,14 +25,12 @@ const SearchResultsPage = (props) => {
                 description: video.snippet.description
             }
         }
-        
         )
     }
-
     const getSearchResults = async () => {
         try {
             let response = await axios.get(
-                `https://www.googleapis.com/youtube/v3/search?q=${search}&key=${KEY}&type=video&maxResults=5&part=snippet`
+                `https://www.googleapis.com/youtube/v3/search?q=${query}&key=${KEY}&type=video&maxResults=5&part=snippet`
                 );
                 console.log(searchResults)
                 setSearchResults(response.data)
@@ -41,8 +39,6 @@ const SearchResultsPage = (props) => {
                 console.log(error.message)
             }
         };
-        
-
     return (
         <div>
             {searchResults.items && searchResults.items.map((video) =>{

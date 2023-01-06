@@ -32,7 +32,7 @@ function App() {
           }
         />
         <Route exact path="/" element={<YouTubePage />}>
-          <Route path="/" element={<SearchResultsPage />}/>
+          <Route path="/search/:query" element={<SearchResultsPage />}/>
           <Route path="watch/:videoId" element={<VideoPage />} />
         </Route>
         <Route path="/register" element={<RegisterPage />} />

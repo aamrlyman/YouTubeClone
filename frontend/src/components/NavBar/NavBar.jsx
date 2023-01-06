@@ -3,14 +3,14 @@ import { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import "./NavBar.css";
-import SeachBar from "../SearchBar/SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Navbar = () => {
   const { logoutUser, user } = useContext(AuthContext);
   const navigate = useNavigate();
   return (
     <div className="navBar">
-      <SeachBar/>
+      <SearchBar/>
       <ul>
         <li className="brand">
         {user ? (
