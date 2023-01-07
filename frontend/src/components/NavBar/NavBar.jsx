@@ -14,7 +14,7 @@ const Navbar = () => {
       <ul>
         <li className="brand">
         {user ? (
-           <Link to= "/home" style={{ textDecoration: "none", color: "white" }}>{user.username}/RickTube!</Link>
+           <Link to= "/home" style={{ textDecoration: "none", color: "white" }}>RickTube! {user.username.toUpperCase()}</Link>
           ) : (
             
           <Link to="/" style={{ textDecoration: "none", color: "white" }} >RickTube!</Link>
