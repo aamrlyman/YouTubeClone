@@ -3,11 +3,15 @@ import { KEY } from '../../localKey';
 import RelatedVideos from "./RelatedVideos";
 import CreateComment from "../../components/Comments/CreateComment";
 import DisplayComments from "../../components/Comments/DisplayComments";
+import useAuth from "../../hooks/useAuth";
+import AuthContext from "../../context/AuthContext";
+import { useContext } from "react";
 
 const VideoPage = (props) => {
   const { videoId } = useParams();
   const { state } = useLocation();
-  console.log(state);
+  const { user } = useContext(AuthContext);
+  console.log(user);
     return (
         <div>
         <iframe id="ytplayer" type="text/html" width="640" height="360"
@@ -16,7 +20,7 @@ const VideoPage = (props) => {
         {/* <Outlet></Outlet> */}
         <h3>{state.title}</h3>
         <p>{state.description}</p>
-        <CreateComment/>
+        {user ? (<CreateComment videoId={videoId}/>): <p>Must be logged in to comment</p>}
         <DisplayComments/>
         <div>
         <RelatedVideos videoId={videoId}/>
