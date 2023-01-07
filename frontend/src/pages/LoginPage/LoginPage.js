@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./LoginPage.css";
 
 
@@ -12,7 +12,6 @@ const LoginPage = () => {
     defaultValues,
     loginUser
   );
- const navigate = useNavigate()
 
   useEffect(() => {
     if (isServerError) {

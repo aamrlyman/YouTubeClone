@@ -46,6 +46,14 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       console.log(error.response.data);
+      function errorMessage(object) {
+        let alertString = ''
+        for( const [key, value] of Object.entries(object)){
+          alertString +=`${key}: ${value} \n`;
+        }
+        alert(alertString); 
+      }
+      errorMessage(error.response.data);
     }
   };
 
@@ -91,3 +99,5 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>
   );
 };
+
+
