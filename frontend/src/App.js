@@ -10,6 +10,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import YouTubePage from "./pages/YouTubePage/YouTubePage";
 import SearchResultsPage from "./pages/SearchResultsPage/SearchResultsPage";
 import VideoPage from "./pages/VideoPage/VideoPage";
+import DefaultSearchResults from "./pages/SearchResultsPage/DefaultSearchResults";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -32,6 +33,7 @@ function App() {
           }
         />
         <Route exact path="/" element={<YouTubePage />}>
+          <Route exact path="/" element={<DefaultSearchResults />}/>
           <Route path="/search/:query" element={<SearchResultsPage />}/>
           <Route path="watch/:videoId" element={<VideoPage />} />
         </Route>
