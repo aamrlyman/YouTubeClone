@@ -21,7 +21,7 @@ const VideoPage = (props) => {
         <h3>{state.title}</h3>
         <p>{state.description}</p>
         {user ? (<CreateComment videoId={videoId}/>): <p>Must be logged in to comment</p>}
-        <DisplayComments/>
+        <DisplayComments videoId={videoId} />
         <div>
         <RelatedVideos videoId={videoId}/>
         </div>
