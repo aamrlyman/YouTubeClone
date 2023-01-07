@@ -1,8 +1,8 @@
 import { useParams, useLocation } from "react-router-dom";
 import { KEY } from '../../localKey';
 import RelatedVideos from "./RelatedVideos";
-
-
+import CreateComment from "../../components/Comments/CreateComment";
+import DisplayComments from "../../components/Comments/DisplayComments";
 
 const VideoPage = (props) => {
   const { videoId } = useParams();
@@ -16,6 +16,8 @@ const VideoPage = (props) => {
         {/* <Outlet></Outlet> */}
         <h3>{state.title}</h3>
         <p>{state.description}</p>
+        <CreateComment/>
+        <DisplayComments/>
         <div>
         <RelatedVideos videoId={videoId}/>
         </div>
