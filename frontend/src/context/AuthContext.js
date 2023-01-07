@@ -7,6 +7,15 @@ const AuthContext = createContext();
 
 export default AuthContext;
 
+function errorMessage(object) {
+  let alertString = ''
+  for( const [key, value] of Object.entries(object)){
+    alertString +=`${key}: ${value} \n`;
+  }
+  alert(alertString); 
+}
+
+
 function setUserObject(user) {
   if (!user) {
     return null;
@@ -27,6 +36,7 @@ export const AuthProvider = ({ children }) => {
   const [isServerError, setIsServerError] = useState(false);
   const navigate = useNavigate();
 
+
   const registerUser = async (registerData) => {
     try {
       let finalData = {
@@ -46,13 +56,6 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       console.log(error.response.data);
-      function errorMessage(object) {
-        let alertString = ''
-        for( const [key, value] of Object.entries(object)){
-          alertString +=`${key}: ${value} \n`;
-        }
-        alert(alertString); 
-      }
       errorMessage(error.response.data);
     }
   };
@@ -72,6 +75,7 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       console.log(error.response.data);
+      errorMessage(error.response.data);
       setIsServerError(true);
       navigate("/register");
     }
