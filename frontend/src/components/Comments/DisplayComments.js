@@ -1,31 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { CommentData } from "./LocalCommentData";
 
 const DisplayComments = (props) => {
-    
-    const [videoComments, setVideoComments] = useState([]);
+//   const [videoComments, setVideoComments] = useState(CommentData);
 
-    useEffect(()=> {
-    const getCommentsById = async () => {
-        try{
-            let response = await axios.get(
-                `http://127.0.0.1:8000/api/comments?video_id=${props.videoId}`,
-            );
-            setVideoComments(response.data)
-            console.log(videoComments)
-        } catch (error) {
-            console.log(error.message);
-        }
-    }
-    getCommentsById();
-}, []);
+  useEffect(() => {
+    // props.getCommentsById();
+  }, [props.videoId]);
 
-    return (             
-        <div>
-            <p>Rick: Comment</p>
-        </div>
-    );
-}
- 
+  return (
+    <div>
+      {props.videoComments &&
+        props.videoComments.map((comment) => {
+          return (
+            <p key={comment.id}>
+              {comment.user.username}: {comment.text} 
+            </p>
+          );
+        })}
+    </div>
+  );
+};
+
 export default DisplayComments;
