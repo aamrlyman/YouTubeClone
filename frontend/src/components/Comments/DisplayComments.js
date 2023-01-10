@@ -6,7 +6,7 @@ const DisplayComments = (props) => {
 //   const [videoComments, setVideoComments] = useState(CommentData);
 
   useEffect(() => {
-    // props.getCommentsById();
+    props.getCommentsById();
   }, [props.videoId]);
 
   return (
