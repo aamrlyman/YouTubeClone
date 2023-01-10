@@ -18,6 +18,7 @@ def get_all_comments(request):
 
 
 @api_view(["GET"])
+@permission_classes([AllowAny])
 def get_comments_by_video_id(request):
     comments = Comment.objects.all()
     video_id = request.query_params.get('video_id')

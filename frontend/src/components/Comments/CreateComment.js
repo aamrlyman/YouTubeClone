@@ -25,15 +25,15 @@ const CreateComment = (props) => {
         headers: {
           authorization: "Bearer " + token, 
         }})
-        console.log(response)
-        props.getCommentsById();
+        console.log(response);
+        reset();
+        // props.getCommentsById();
     } catch (error) {
-      console.log(error.message)
-  
+      console.log(error.message);
     }
   }
   
-  const [formData, handleInputChange, handleSubmit] = useCustomForm(
+  const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
     defaultValues,
     handlePost
   )
