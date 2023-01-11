@@ -27,7 +27,7 @@ const CreateComment = (props) => {
         }})
         console.log(response);
         reset();
-        // props.getCommentsById();
+        props.getCommentsById();
     } catch (error) {
       console.log(error.message);
     }

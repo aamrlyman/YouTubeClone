@@ -14,14 +14,15 @@ const VideoPage = (props) => {
   const { videoId } = useParams();
   const { state } = useLocation();
   const { user } = useContext(AuthContext);
-  const [videoComments, setVideoComments] = useState();
+  const [videoComments, setVideoComments] = useState(CommentData);
 
   const getCommentsById = async () => {
     try {
       let response = await axios.get(
         // "http://127.0.0.1:8000/api/comments/all/"
+        `http://127.0.0.1:8000/api/comments/all/?video_id=${videoId}`
         // `http://127.0.0.1:8000/api/comments?video_id=${videoId}/`
-        "http://127.0.0.1:8000/api/comments?video_id=5uhqAntS2-o"
+        // "http://127.0.0.1:8000/api/comments?video_id=5uhqAntS2-o"
       );
       setVideoComments(response.data);
       console.log(videoComments);
