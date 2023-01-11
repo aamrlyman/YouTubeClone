@@ -28,10 +28,10 @@ const CreateComment = (props) => {
         console.log(response);
         reset();
         props.getCommentsById();
-    } catch (error) {
-      console.log(error.message);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
-  }
   
   const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
     defaultValues,

@@ -6,5 +6,5 @@ from django.urls import include, path
 urlpatterns = [
     path('loggedIn/', views.user_comments),
     path('', views.get_comments_by_video_id),
-    # path('', views.get_comments_by_video_id),
+    # path('/all', views.get_comments_by_video_id),
 ]
