@@ -21,6 +21,7 @@ const DefaultSearchResults = (props) => {
     const handleClick = (video) => {
         navigate(`/watch/${video.id.videoId}`, {
             state: {
+                videoId: video.id.videoId, 
                 title: video.snippet.title,
                 description: video.snippet.description
             }
