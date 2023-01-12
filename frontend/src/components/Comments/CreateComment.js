@@ -27,7 +27,7 @@ const CreateComment = (props) => {
         }})
         console.log(response);
         reset();
-        props.getCommentsById();
+        props.getCommentsById(props.setVideoComments);
       } catch (error) {
         console.log(error.message);
       }
@@ -35,7 +35,8 @@ const CreateComment = (props) => {
   
   const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
     defaultValues,
-    handlePost
+    handlePost,
+    // props.getCommentsById
   )
 
 

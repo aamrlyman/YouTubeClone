@@ -3,19 +3,19 @@ import axios from "axios";
 import { CommentData } from "./LocalCommentData";
 
 const DisplayComments = (props) => {
-//   const [videoComments, setVideoComments] = useState(CommentData);
+  //   const [videoComments, setVideoComments] = useState(CommentData);
 
   useEffect(() => {
-    props.getCommentsById();
+    props.getCommentsById(props.setVideoComments);
   }, [props.videoId]);
 
   return (
     <div>
       {props.videoComments &&
-        props.videoComments.map((comment) => {
+        props.videoComments.slice().reverse().map((comment) => {
           return (
             <p key={comment.id}>
-              {comment.user.username}: {comment.text} 
+              {comment.user.username}: {comment.text}
             </p>
           );
         })}

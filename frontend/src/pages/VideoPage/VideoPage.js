@@ -16,7 +16,7 @@ const VideoPage = (props) => {
   const { user } = useContext(AuthContext);
   const [videoComments, setVideoComments] = useState();
  
-  const getCommentsById = async () => {
+  const getCommentsById = async (callback) => {
     try {
       let response = await axios.get(
         // "http://127.0.0.1:8000/api/comments/all/"
@@ -24,9 +24,8 @@ const VideoPage = (props) => {
         // `http://127.0.0.1:8000/api/comments?video_id=${videoId}/`
         // "http://127.0.0.1:8000/api/comments?video_id=5uhqAntS2-o"
       );
-      setVideoComments(response.data);
-      console.log(videoComments);
-      // console.log(state)
+      callback(response.data)
+      console.log(videoComments)
     } catch (error) {
       console.log(error.message);
     }
