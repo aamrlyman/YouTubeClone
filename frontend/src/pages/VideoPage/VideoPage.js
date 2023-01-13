@@ -11,12 +11,12 @@ import React, { useState, useEffect } from "react";
 import { CommentData } from "../../components/Comments/LocalCommentData";
 
 const VideoPage = (props) => {
-  const { videoId } = useParams();
+  // const { videoId } = useParams();
   const { state } = useLocation();
   const { user } = useContext(AuthContext);
   const [videoComments, setVideoComments] = useState();
  
-  const getCommentsById = async (callback) => {
+  const getCommentsById = async () => {
     try {
       let response = await axios.get(
         // "http://127.0.0.1:8000/api/comments/all/"
@@ -24,7 +24,7 @@ const VideoPage = (props) => {
         // `http://127.0.0.1:8000/api/comments?video_id=${videoId}/`
         // "http://127.0.0.1:8000/api/comments?video_id=5uhqAntS2-o"
       );
-      callback(response.data)
+      setVideoComments(response.data)
       console.log(videoComments)
     } catch (error) {
       console.log(error.message);
@@ -39,7 +39,7 @@ const VideoPage = (props) => {
         type="text/html"
         width="640"
         height="360"
-        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://example.com`}
+        src={`https://www.youtube.com/embed/${state.videoId}?autoplay=1&origin=http://example.com`}
         frameborder="0"
       ></iframe>
       {/* <Outlet></Outlet> */}
@@ -47,7 +47,8 @@ const VideoPage = (props) => {
       <p>{state.description}</p>
       {user ? (
         <CreateComment
-          videoId={videoId}
+          key={state.videoId}
+          videoId={state.videoId}
           user={user}
           getCommentsById={getCommentsById}
           videoComments={videoComments}
@@ -57,13 +58,14 @@ const VideoPage = (props) => {
         <p>Must be logged in to comment</p>
       )}
       <DisplayComments
-        videoId={videoId}
+        key={state.videoId}
+        videoId={state.videoId}
         getCommentsById={getCommentsById}
         videoComments={videoComments}
         setVideoComments={setVideoComments}
       />
       <div>
-        <RelatedVideos videoId={videoId} />
+        <RelatedVideos videoId={state.videoId} />
       </div>
     </div>
   );

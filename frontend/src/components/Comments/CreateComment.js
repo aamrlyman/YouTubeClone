@@ -27,7 +27,7 @@ const CreateComment = (props) => {
         }})
         console.log(response);
         reset();
-        props.getCommentsById(props.setVideoComments);
+        props.getCommentsById();
       } catch (error) {
         console.log(error.message);
       }
@@ -39,12 +39,9 @@ const CreateComment = (props) => {
     // props.getCommentsById
   )
 
-
-
-
 return (
         <form onSubmit={handleSubmit}>
-            <label>Create Comment:</label>
+            <label>Create Comment: {props.videoId}</label>
             <input name="text" type= 'text' value={formData.text} onChange={handleInputChange}  />
             <button type="submit">Post</button>
         </form>

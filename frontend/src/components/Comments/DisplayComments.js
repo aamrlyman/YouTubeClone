@@ -6,11 +6,12 @@ const DisplayComments = (props) => {
   //   const [videoComments, setVideoComments] = useState(CommentData);
 
   useEffect(() => {
-    props.getCommentsById(props.setVideoComments);
+    props.getCommentsById();
   }, [props.videoId]);
 
   return (
     <div>
+      {props.videoId}
       {props.videoComments &&
         props.videoComments.slice().reverse().map((comment) => {
           return (
