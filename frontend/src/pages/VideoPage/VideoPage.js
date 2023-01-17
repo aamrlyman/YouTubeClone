@@ -8,47 +8,82 @@ import AuthContext from "../../context/AuthContext";
 import { useContext } from "react";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { CommentData } from "../../components/Comments/LocalCommentData";
+import { localVideo } from "./localVideo";
+// import { CommentData } from "../../components/Comments/LocalCommentData";
 
 const VideoPage = (props) => {
-  // const { videoId } = useParams();
-  const { state } = useLocation();
+  const [video, setVideo] = useState([]);
+  const [videoComments, setVideoComments] = useState([]);
+  const { videoId } = useParams();
   const { user } = useContext(AuthContext);
-  const [videoComments, setVideoComments] = useState();
- 
-  const getCommentsById = async () => {
+  // const { state } = useLocation();
+
+  const getVideoById = async () => {
     try {
-      let response = await axios.get(
-        // "http://127.0.0.1:8000/api/comments/all/"
-        `http://127.0.0.1:8000/api/comments/?video_id=${state.videoId}`
-        // `http://127.0.0.1:8000/api/comments?video_id=${videoId}/`
-        // "http://127.0.0.1:8000/api/comments?video_id=5uhqAntS2-o"
-      );
-      setVideoComments(response.data)
-      console.log(videoComments)
+      await axios
+        .get(
+          `https://www.googleapis.com/youtube/v3/videos?key=${KEY}&type=video&part=snippet&id=${videoId}`
+          // `https://www.googleapis.com/youtube/v3/videos?key=AIzaSyDUPp3atUG0nHScbHbpMp_QRv6osslEHu8&type=video&part=snippet&id=OtVTTx2TnaU&ab`
+        )
+        .then((response) => {
+          setVideo(response.data.items);
+        });
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  console.log(user);
+  useEffect(() => {
+    getVideoById().then((response) => {
+      console.log(video);
+    });
+  }, [videoId]);
+
+  const getCommentsById = async () => {
+    try {
+      let response = await axios.get(
+        `http://127.0.0.1:8000/api/comments/?video_id=${videoId}`
+      );
+      setVideoComments(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  console.log(videoComments);
+  // console.log(user);
+
   return (
     <div>
+      {video &&
+        video.map((video) => {
+          return (
+            <div>
+              <h1>{video.snippet.title}</h1>
+            </div>
+          );
+        })}
       <iframe
         id="ytplayer"
         type="text/html"
         width="640"
         height="360"
-        src={`https://www.youtube.com/embed/${state.videoId}?autoplay=1&origin=http://example.com`}
+        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://example.com`}
         frameborder="0"
       ></iframe>
-      {/* <Outlet></Outlet> */}
-      <h3>{state.title}</h3>
-      <p>{state.description}</p>
+         {video &&
+        video.map((video) => {
+          return (
+            <div>
+              <p>{video.snippet.description}</p>
+            </div>
+          );
+        })}
+      {/* <p>{video[0].snippet.description}</p> */}
       {user ? (
         <CreateComment
-          key={state.videoId}
-          videoId={state.videoId}
+          key={videoId}
+          videoId={videoId}
           user={user}
           getCommentsById={getCommentsById}
           videoComments={videoComments}
@@ -58,14 +93,14 @@ const VideoPage = (props) => {
         <p>Must be logged in to comment</p>
       )}
       <DisplayComments
-        key={state.videoId}
-        videoId={state.videoId}
+        // key={videoId}
+        videoId={videoId}
         getCommentsById={getCommentsById}
         videoComments={videoComments}
         setVideoComments={setVideoComments}
       />
       <div>
-        <RelatedVideos videoId={state.videoId} />
+        <RelatedVideos videoId={videoId} />
       </div>
     </div>
   );

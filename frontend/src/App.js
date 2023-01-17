@@ -35,7 +35,10 @@ function App() {
         <Route exact path="/" element={<YouTubePage />}>
           <Route exact path="/" element={<DefaultSearchResults />}/>
           <Route path="/search/:query" element={<SearchResultsPage />}/>
-          <Route path="watch/:videoId" element={<VideoPage />} />
+          <Route path="/watch/:videoId" element={<VideoPage/>}/>
+          {/* <Route path="watch/:videoId" 
+          render={props => <VideoPage key={props.match.params.videoId} /> }
+          /> */}
         </Route>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />

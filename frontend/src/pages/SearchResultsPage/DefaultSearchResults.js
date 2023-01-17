@@ -7,8 +7,8 @@ import { useNavigate, Link, useParams, } from 'react-router-dom';
 const DefaultSearchResults = (props) => {
     const { query } = useParams();
     const [searchResults, setSearchResults] = useState(DATA)
-    const navigate = useNavigate();
-    let search = "cars"
+    // const navigate = useNavigate();
+    // let search = "cars"
 
     // function onClickHandler(searchResults){
     //     useNavigate(`/video/${video.id.videoId}`)
@@ -18,16 +18,16 @@ const DefaultSearchResults = (props) => {
         // getSearchResults();
     }, [])
     
-    const handleClick = (video) => {
-        navigate(`/watch/${video.id.videoId}`, {
-            state: {
-                videoId: video.id.videoId, 
-                title: video.snippet.title,
-                description: video.snippet.description
-            }
-        }
-        )
-    }
+    // const handleClick = (video) => {
+    //     navigate(`/watch/${video.id.videoId}`, {
+    //         state: {
+    //             videoId: video.id.videoId, 
+    //             title: video.snippet.title,
+    //             description: video.snippet.description
+    //         }
+    //     }
+    //     )
+    // }
     const getSearchResults = async () => {
         try {
             let response = await axios.get(
@@ -45,7 +45,11 @@ const DefaultSearchResults = (props) => {
             {searchResults.items && searchResults.items.map((video) =>{
                 return(
                 <li key={video.id.videoId}>
-                        <img src= {video.snippet.thumbnails.default.url} alt='video thumbnails' onClick= {() => handleClick(video)}/>
+                      <Link to={`/watch/${video.id.videoId}`} >
+                         <img src= {video.snippet.thumbnails.default.url} alt='video thumbnails' 
+                        //  onClick= {() => handleClick(video)}
+                         />
+                        </Link> 
                      <p>{video.snippet.title}</p>
                 </li>)
             }

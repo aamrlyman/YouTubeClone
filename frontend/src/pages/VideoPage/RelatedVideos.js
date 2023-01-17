@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from 'react';
 import { KEY } from "../../localKey";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { DATA } from "../../localData"
 
 const RelatedVideos = (props) => {
@@ -47,7 +47,11 @@ const RelatedVideos = (props) => {
         {relatedVideos.items && relatedVideos.items.map((video) =>{
             return(
             <li key={video.id.videoId}>
-                    <img src= {video.snippet.thumbnails.default.url} alt='video thumbnails' onClick= {() => handleClick(video)}/>
+                 <Link to={`/watch/${video.id.videoId}`} >
+                         <img src= {video.snippet.thumbnails.default.url} alt='video thumbnails' 
+                        //  onClick= {() => handleClick(video)}
+                         />
+                        </Link> 
                  <p>{video.snippet.title}</p>
             </li>)
         }

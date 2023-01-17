@@ -6,9 +6,9 @@ import { useNavigate, Link, useParams, } from 'react-router-dom';
 
 const SearchResultsPage = (props) => {
     const { query } = useParams();
-    const [searchResults, setSearchResults] = useState(DATA)
+    const [searchResults, setSearchResults] = useState([])
     const navigate = useNavigate();
-    let search = "cars"
+    // let search = "cars"
 
     // function onClickHandler(searchResults){
     //     useNavigate(`/video/${video.id.videoId}`)
@@ -33,19 +33,23 @@ const SearchResultsPage = (props) => {
             let response = await axios.get(
                 `https://www.googleapis.com/youtube/v3/search?q=${query}&key=${KEY}&type=video&maxResults=5&part=snippet`
                 );
-                console.log(searchResults)
                 setSearchResults(response.data)
                 
             } catch (error) {
                 console.log(error.message)
             }
         };
-    return (
+        console.log(searchResults)
+        return (
         <div>
             {searchResults.items && searchResults.items.map((video) =>{
                 return(
                 <li key={video.id.videoId}>
-                        <img src= {video.snippet.thumbnails.default.url} alt='video thumbnails' onClick= {() => handleClick(video)}/>
+                        <Link to={`/watch/${video.id.videoId}`} >
+                         <img src= {video.snippet.thumbnails.default.url} alt='video thumbnails' 
+                        //  onClick= {() => handleClick(video)}
+                         />
+                        </Link> 
                      <p>{video.snippet.title}</p>
                 </li>)
             }
