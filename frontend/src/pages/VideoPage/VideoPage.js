@@ -23,7 +23,6 @@ const VideoPage = (props) => {
       await axios
         .get(
           `https://www.googleapis.com/youtube/v3/videos?key=${KEY}&type=video&part=snippet&id=${videoId}`
-          // `https://www.googleapis.com/youtube/v3/videos?key=AIzaSyDUPp3atUG0nHScbHbpMp_QRv6osslEHu8&type=video&part=snippet&id=OtVTTx2TnaU&ab`
         )
         .then((response) => {
           setVideo(response.data.items);
@@ -55,14 +54,7 @@ const VideoPage = (props) => {
 
   return (
     <div>
-      {video &&
-        video.map((video) => {
-          return (
-            <div>
-              <h1>{video.snippet.title}</h1>
-            </div>
-          );
-        })}
+      {video.length > 0 ? <h1>{video[0].snippet.title}</h1> : <h1></h1>}
       <iframe
         id="ytplayer"
         type="text/html"
@@ -79,7 +71,7 @@ const VideoPage = (props) => {
             </div>
           );
         })}
-      {/* <p>{video[0].snippet.description}</p> */}
+      {video.length > 0 ? <p>{video[0].snippet.title}</p> : <p></p>}
       {user ? (
         <CreateComment
           key={videoId}
