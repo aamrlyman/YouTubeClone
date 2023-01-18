@@ -41,7 +41,7 @@ const CreateComment = (props) => {
 
 return (
         <form onSubmit={handleSubmit}>
-            <label>Create Comment: {props.videoId}</label>
+            <label>Create Comment: </label>
             <input name="text" type= 'text' value={formData.text} onChange={handleInputChange}  />
             <button type="submit">Post</button>
         </form>

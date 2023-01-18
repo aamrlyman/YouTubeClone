@@ -3,6 +3,7 @@ import axios from "axios";
 import { DATA } from '../../localData';
 import { KEY } from '../../localKey';
 import { useNavigate, Link, useParams, } from 'react-router-dom';
+import VidMapper from '../../components/VidMapper';
 
 const DefaultSearchResults = (props) => {
     const { query } = useParams();
@@ -42,19 +43,7 @@ const DefaultSearchResults = (props) => {
         };
     return (
         <div>
-            {searchResults.items && searchResults.items.map((video) =>{
-                return(
-                <li key={video.id.videoId}>
-                      <Link to={`/watch/${video.id.videoId}`} >
-                         <img src= {video.snippet.thumbnails.default.url} alt='video thumbnails' 
-                        //  onClick= {() => handleClick(video)}
-                         />
-                        </Link> 
-                     <p>{video.snippet.title}</p>
-                </li>)
-            }
-            ) }
-            {/* <VideoPage/> */}
+            <VidMapper searchResults={searchResults}/>
         </div>
       );
 }

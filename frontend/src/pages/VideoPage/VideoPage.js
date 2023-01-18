@@ -63,7 +63,7 @@ const VideoPage = (props) => {
         src={`https://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://example.com`}
         frameborder="0"
       ></iframe>
-         {video &&
+      {video &&
         video.map((video) => {
           return (
             <div>
@@ -85,14 +85,14 @@ const VideoPage = (props) => {
         <p>Must be logged in to comment</p>
       )}
       <DisplayComments
-        // key={videoId}
+        key={videoId + "DC"}
         videoId={videoId}
         getCommentsById={getCommentsById}
         videoComments={videoComments}
         setVideoComments={setVideoComments}
       />
       <div>
-        <RelatedVideos videoId={videoId} />
+        <RelatedVideos videoId={videoId} key={videoId + "RV"}/>
       </div>
     </div>
   );

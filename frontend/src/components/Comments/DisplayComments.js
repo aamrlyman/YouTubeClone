@@ -11,7 +11,6 @@ const DisplayComments = (props) => {
 
   return (
     <div>
-      {props.videoId}
       {props.videoComments &&
         props.videoComments.slice().reverse().map((comment) => {
           return (

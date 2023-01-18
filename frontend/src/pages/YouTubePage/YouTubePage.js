@@ -8,7 +8,7 @@ const YouTubePage = (props) => {
     const {videoId} = useParams();
     return (
         <div>
-            <h1>{videoId}</h1>
+            {/* <h1>{videoId}</h1> */}
 
             {/* <RelatedVideos/> */}
             <Outlet videoId={videoId}/>
