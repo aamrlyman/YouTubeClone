@@ -26,7 +26,7 @@ const DefaultSearchResults = (props) => {
             }
         };
     return (
-        <div>
+        <div className='VidMapperContainer'>
             <VidMapper searchResults={searchResults} key={searchResults.etag}/>
         </div>
       );
