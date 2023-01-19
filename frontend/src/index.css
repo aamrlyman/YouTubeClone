@@ -1,8 +1,11 @@
 
 .x{
-    width: 600px;
-    padding: 1rem;
-    display: grid;
-    place-content: center;
-    background-color: rgba(0, 0, 0, 0.226); 
+width: 500px;
+padding: 1rem;
+display: grid;
+place-content: center;
+place-items: center;
+box-shadow: 2px 3px 8px -2px rgba(0, 0, 0, 0.300);
+margin: 1rem;
+border-radius: 7px;
 }
