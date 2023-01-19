@@ -8,26 +8,12 @@ import VidMapper from "../../components/VidMapper";
 const SearchResultsPage = (props) => {
   const { query } = useParams();
   const [searchResults, setSearchResults] = useState([]);
-  const navigate = useNavigate();
-  // let search = "cars"
-
-  // function onClickHandler(searchResults){
-  //     useNavigate(`/video/${video.id.videoId}`)
-  // }
+  
 
   useEffect(() => {
     getSearchResults();
   }, []);
 
-  const handleClick = (video) => {
-    navigate(`/watch/${video.id.videoId}`, {
-      state: {
-        videoId: video.id.videoId,
-        title: video.snippet.title,
-        description: video.snippet.description,
-      },
-    });
-  };
   const getSearchResults = async () => {
     try {
       let response = await axios.get(
@@ -38,10 +24,10 @@ const SearchResultsPage = (props) => {
       console.log(error.message);
     }
   };
-  console.log(searchResults);
+//   console.log(searchResults);
   return (
     <div>
-      <VidMapper searchResults={searchResults} />
+      <VidMapper searchResults={searchResults} key={searchResults.etag}/>
     </div>
   );
 };

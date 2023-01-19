@@ -9,6 +9,7 @@ import { useContext } from "react";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { localVideo } from "./localVideo";
+
 // import { CommentData } from "../../components/Comments/LocalCommentData";
 
 const VideoPage = (props) => {
@@ -34,7 +35,7 @@ const VideoPage = (props) => {
 
   useEffect(() => {
     getVideoById().then((response) => {
-      console.log(video);
+      // console.log(video);
     });
   }, [videoId]);
 
@@ -49,13 +50,14 @@ const VideoPage = (props) => {
     }
   };
 
-  console.log(videoComments);
+  // console.log(videoComments);
   // console.log(user);
 
   return (
     <div>
       {video.length > 0 ? <h1>{video[0].snippet.title}</h1> : <h1></h1>}
       <iframe
+        key={videoId + "iframe"}
         id="ytplayer"
         type="text/html"
         width="640"
@@ -92,7 +94,7 @@ const VideoPage = (props) => {
         setVideoComments={setVideoComments}
       />
       <div>
-        <RelatedVideos videoId={videoId} key={videoId + "RV"}/>
+        <RelatedVideos videoId={videoId} key={videoId + "rv"}/>
       </div>
     </div>
   );
