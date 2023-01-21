@@ -7,10 +7,7 @@ import { Outlet, useParams } from 'react-router-dom';
 const YouTubePage = (props) => {
     const {videoId} = useParams();
     return (
-        <div>
-            {/* <h1>{videoId}</h1> */}
-
-            {/* <RelatedVideos/> */}
+        <div className="YouTubePage">
             <Outlet videoId={videoId}/>
 
         </div>

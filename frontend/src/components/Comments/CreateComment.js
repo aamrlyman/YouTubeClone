@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import useCustomForm from '../../hooks/useCustomForm';
+import useCustomForm from "../../hooks/useCustomForm";
 // import { useContext } from "react";
 // import AuthContext from "../../context/AuthContext";
 
@@ -11,43 +11,56 @@ const CreateComment = (props) => {
   const defaultValues = {
     video_id: props.videoId,
     text: "",
-    user_id: user.id
-  }
+    user_id: user.id,
+  };
   const handlePost = async (defaultData) => {
     try {
       let postData = {
         video_id: defaultData.video_id,
         text: defaultData.text,
-        user_id: defaultData.user_id
-  
-      }  
-      let response = await axios.post('http://127.0.0.1:8000/api/comments/loggedIn/', postData, {
-        headers: {
-          authorization: "Bearer " + token, 
-        }})
-        console.log(response);
-        reset();
-        props.getCommentsById();
-      } catch (error) {
-        console.log(error.message);
-      }
+        user_id: defaultData.user_id,
+      };
+      let response = await axios.post(
+        "http://127.0.0.1:8000/api/comments/loggedIn/",
+        postData,
+        {
+          headers: {
+            authorization: "Bearer " + token,
+          },
+        }
+      );
+      console.log(response);
+      reset();
+      props.getCommentsById();
+    } catch (error) {
+      console.log(error.message);
     }
-  
+  };
+
   const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
     defaultValues,
-    handlePost,
+    handlePost
     // props.getCommentsById
-  )
+  );
 
-return (
-        <form onSubmit={handleSubmit}>
-            <label>Create Comment: </label>
-            <input name="text" type= 'text' value={formData.text} onChange={handleInputChange}  />
-            <button type="submit">Post</button>
-        </form>
-      );
-}
- 
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* <label className="createComment">Create Comment: </label> */}
+      <input
+        className="inputComment"
+        name="text"
+        type="text"
+        value={formData.text}
+        onChange={handleInputChange}
+        placeholder="Create Comment"
+      />
+      <button className="Post" type="submit">
+        Post
+      </button>
+    </form>
+  );
+};
+
 export default CreateComment;
 
 //      {

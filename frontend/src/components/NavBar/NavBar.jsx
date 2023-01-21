@@ -10,22 +10,25 @@ const Navbar = () => {
   const navigate = useNavigate();
   return (
     <div className="navBar">
-      <SearchBar/>
-      <ul>
-        <li className="brand">
+      
+      <ul className="navBarUl">
+        <li className="navLi">
         {user ? (
-           <Link to= "/home" style={{ textDecoration: "none", color: "white" }}>RickTube! {user.username.toUpperCase()}</Link>
+           <Link to= "/home" style={{ textDecoration: "none", color: "white" }}><h1 className="brand1">RickTube! {user.username.toUpperCase()}</h1></Link>
           ) : (
             
-          <Link to="/" style={{ textDecoration: "none", color: "white" }} >RickTube!</Link>
+          <Link to="/" style={{ textDecoration: "none", color: "white" }} ><h1 className="brand1">RickTube!</h1></Link>
           )}
         </li>
-        <li>
+        <li className="navLi">
+        <SearchBar/>
+          </li>
+        <li className="navLi">
           {user ? (
-            <button onClick={logoutUser}>Logout</button>
+            <button className="Login" onClick={logoutUser}>Logout</button>
           ) : (
             
-            <button onClick={() => navigate("/login")}>Login</button>
+            <button className="Login" onClick={() => navigate("/login")}>Login</button>
           )}
         </li>
       </ul>

@@ -10,12 +10,12 @@ const DisplayComments = (props) => {
   }, [props.videoId]);
 
   return (
-    <div>
+    <div className="displayComment">
       {props.videoComments &&
         props.videoComments.slice().reverse().map((comment) => {
           return (
             <p key={comment.id}>
-              {comment.user.username}: {comment.text}
+              <span className="userName">{comment.user.username.toUpperCase()}</span>: {comment.text}
             </p>
           );
         })}

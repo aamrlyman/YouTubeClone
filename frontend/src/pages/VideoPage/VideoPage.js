@@ -13,7 +13,7 @@ import { localVideo } from "./localVideo";
 // import { CommentData } from "../../components/Comments/LocalCommentData";
 
 const VideoPage = (props) => {
-  const [video, setVideo] = useState([]);
+  const [video, setVideo] = useState(null);
   const [videoComments, setVideoComments] = useState([]);
   const { videoId } = useParams();
   const { user } = useContext(AuthContext);
@@ -26,7 +26,7 @@ const VideoPage = (props) => {
           `https://www.googleapis.com/youtube/v3/videos?key=${KEY}&type=video&part=snippet&id=${videoId}`
         )
         .then((response) => {
-          setVideo(response.data.items);
+          setVideo(response.data.items[0]);
         });
     } catch (error) {
       console.log(error.message);
@@ -54,26 +54,20 @@ const VideoPage = (props) => {
   // console.log(user);
 
   return (
-    <div>
-      {video.length > 0 ? <h1>{video[0].snippet.title}</h1> : <h1></h1>}
+    <div className="videoPage">
+      <div className="iFrame">
+      {video ? <h1>{video.snippet.title}</h1> : <h1></h1>}
       <iframe
         key={videoId + "iframe"}
         id="ytplayer"
         type="text/html"
         width="640"
-        height="360"
+        height="390"
         src={`https://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://example.com`}
         frameborder="0"
       ></iframe>
-      {video &&
-        video.map((video) => {
-          return (
-            <div>
-              <p>{video.snippet.description}</p>
-            </div>
-          );
-        })}
-      {video.length > 0 ? <p>{video[0].snippet.title}</p> : <p></p>}
+      {video ? <p className="description">{video.snippet.description}</p> : <p></p>}
+      <div className="comments">
       {user ? (
         <CreateComment
           key={videoId}
@@ -93,9 +87,11 @@ const VideoPage = (props) => {
         videoComments={videoComments}
         setVideoComments={setVideoComments}
       />
+      </div>
+      </div>
       <div>
         <RelatedVideos videoId={videoId} key={videoId + "rv"}/>
-      </div>
+      </div> 
     </div>
   );
 };

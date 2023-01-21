@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { KEY } from "../../localKey";
 import { useNavigate, Link } from "react-router-dom";
 import { DATA } from "../../localData"
-import VidMapper from "../../components/VidMapper";
+import VertVidMapper from "../../components/VertVidMapper";
 
 const RelatedVideos = (props) => {
 
@@ -252,7 +252,7 @@ const RelatedVideos = (props) => {
 
     return (
         <div>
-        <VidMapper searchResults={searchResults} key={searchResults.etag}/>
+        <VertVidMapper searchResults={searchResults} key={searchResults.etag}/>
     </div>
       );
 }
