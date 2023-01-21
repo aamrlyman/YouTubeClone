@@ -78,7 +78,7 @@ const VideoPage = (props) => {
           setVideoComments={setVideoComments}
         />
       ) : (
-        <p>Must be logged in to comment</p>
+        <h2>Must be logged in to comment</h2>
       )}
       <DisplayComments
         key={videoId + "DC"}
