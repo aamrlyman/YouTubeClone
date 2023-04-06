@@ -9,7 +9,6 @@ const YouTubePage = (props) => {
     return (
         <div className="YouTubePage">
             <Outlet videoId={videoId}/>
-
         </div>
       );
 }
