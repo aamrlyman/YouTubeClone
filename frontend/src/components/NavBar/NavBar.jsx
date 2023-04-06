@@ -17,7 +17,7 @@ const Navbar = () => {
            <Link to= "/home" style={{ textDecoration: "none", color: "white" }}><h1 className="brand1"><i className="fa-solid fa-video" style={{fontSize:"3rem"}}></i> {user.username.toUpperCase()}</h1></Link>
           ) : (
             
-          <Link to="/" style={{ textDecoration: "none", color: "white" }} ><h1 className="brand1"><i className="fa-solid fa-video" style={{fontSize:"3rem"}}></i> Videos 4 You </h1></Link>
+          <Link to="/" style={{ textDecoration: "none", color: "white" }} ><h1 className="brand1"><i className="fa-solid fa-video" style={{fontSize:"3rem"}}></i> Video Library </h1></Link>
           )}
         </li>
         <li className="navLi">
