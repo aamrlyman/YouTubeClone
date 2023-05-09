@@ -1,4 +1,4 @@
-### Video Libarary 
+# Video Libarary 
 This video platform integrates the YouTube API and includes viewer registration, login, and video comment options. All users can view comments, only regsitered and logged in users can comment.
 
 
