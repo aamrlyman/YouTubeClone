@@ -9,7 +9,7 @@ The scaffolding was generated using Django and Django REST Framework and is conn
 I am using github workflows to push changes to the `main` branch as needed. 
 
 ## Project Status
-This project is feature complete but not currently hosted:  
+This project is feature complete but not currently hosted and includes the following features:  
 - Users account registration, login and logout 
 - Logged in users can add comments to videos other users can view comments made 
 - Users can search for videos using the search bar
